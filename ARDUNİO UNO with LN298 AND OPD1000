@@ -1,0 +1,27 @@
+#define sensorPin 3  // Sensör pini
+#define enaPin 6     // Enable pini (PWM için)
+#define in1Pin 10     // Motor kontrol pini 1
+#define in2Pin 11     // Motor kontrol pini 2
+
+void setup() {
+  pinMode(sensorPin, INPUT);
+  pinMode(enaPin, OUTPUT);
+  pinMode(in1Pin, OUTPUT);
+  pinMode(in2Pin, OUTPUT);
+}
+
+void loop() {
+  if (digitalRead(sensorPin) == 1) { // Elin algılandığı durum
+    // Motoru ileri yönde çalıştır
+    digitalWrite(in1Pin, HIGH);
+    digitalWrite(in2Pin, LOW);
+
+    // Motor hızını 150 olarak ayarla
+    analogWrite(enaPin, 155); 
+  } else { // El algılanmadığı durum
+    // Motoru durdur
+    digitalWrite(in1Pin, LOW);
+    digitalWrite(in2Pin, LOW);
+    analogWrite(enaPin, 0); 
+  }
+}
